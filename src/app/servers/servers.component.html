@@ -7,6 +7,7 @@
 
 <input type="text" class="form-control" [(ngModel)]="serverName" />
 <!-- <p>{{ serverName }}</p> -->
+<br />
 <button
   class="btn btn-primary"
   [disabled]="!allowNewServer"
@@ -14,6 +15,8 @@
 >
   Add Server
 </button>
+<br />
+<br />
 <!-- <p [innerText]="allowNewServer"></p> -->
 <!-- <p>{{ serverCreationStatus }}</p> -->
 <!-- <p *ngIf="serverCreated; else noServer">Server was created! And Name is {{ serverName }}</p> -->
@@ -21,21 +24,52 @@
 <!-- <ng-template #noServer>
   <p >No Server was created</p>
 </ng-template> -->
-<app-server></app-server>
-<app-server></app-server>
+
+<app-server *ngFor="let server of servers"></app-server>
 
 <br />
 <br />
-<br />
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4">
-      <label>Username</label>
-      <input type="text" [(ngModel)]="userName" class="form-control" placeholder="Enter Username"/>
-      <p>{{ userName }}</p>
-      <button class="btn btn-primary" [disabled]="userName === '' " (click)="userNameReset()">
-        Submit
-      </button>
-    </div>
-  </div>
-</div>
+        <label>Username</label>
+        <input
+          type="text"
+          [(ngModel)]="userName"
+          class="form-control"
+          placeholder="Enter Username"
+        />
+        <p>{{ userName }}</p>
+        <button
+          class="btn btn-primary"
+          [disabled]="userName === ''"
+          (click)="userNameReset()"
+        >
+          Submit
+        </button>
+
+        <br />
+        <br />
+        <hr />
+        <!-- <button class="btn btn-primary" (click)="display = !display">Display Button</button> -->
+        <button class="btn btn-primary" (click)="onToggleDetails()">
+          Display Button
+        </button>
+        <p *ngIf="display">Show Secret Password: Tuna</p>
+
+        <div
+          *ngFor="let logItem of log"
+          [ngStyle]="{ backgroundColor: logItem >= 5 ? 'dodgerblue' : 'transparent' }"
+          [ngClass]="{ 'white-text': logItem >= 5 }"
+        >
+          {{ logItem }}
+        </div>
+
+        <br>
+        <hr>
+        <div
+        *ngFor="let logItem of datelog; let i =index"
+        [ngStyle]="{ backgroundColor: i >= 4 ? 'dodgerblue' : 'transparent' }"
+        [ngClass]="{ 'white-text': i >= 4 }"
+      >
+        {{ logItem }}
+      </div>
+
+

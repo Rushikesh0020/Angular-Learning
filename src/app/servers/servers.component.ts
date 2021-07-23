@@ -11,6 +11,11 @@ export class ServersComponent implements OnInit {
   serverName = "Testserver";
   userName = '';
   serverCreated = false;
+  servers = ['Testserver 1', 'Testserver 2'];
+  display = false;
+  // log = [];
+  log : number[] = [];
+  datelog : any[] = [];
   constructor() { 
     setTimeout(() => {
       this.allowNewServer = true;
@@ -21,6 +26,7 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer() {
+    this.servers.push(this.serverName);
     this.serverCreated = true;
     this.serverCreationStatus = "Server was Created! Name is " + this.serverName;
   }
@@ -31,6 +37,12 @@ export class ServersComponent implements OnInit {
 
   userNameReset() {
     this.userName = '';
+  }
+
+  onToggleDetails() {
+    this.display = !this.display;
+    this.log.push((this.log.length)+ 1)
+    this.datelog.push(new Date());
   }
 
 }
