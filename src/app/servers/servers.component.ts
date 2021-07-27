@@ -16,6 +16,8 @@ export class ServersComponent implements OnInit {
   // log = [];
   log : number[] = [];
   datelog : any[] = [];
+
+  
   constructor() { 
     setTimeout(() => {
       this.allowNewServer = true;
@@ -41,7 +43,7 @@ export class ServersComponent implements OnInit {
 
   onToggleDetails() {
     this.display = !this.display;
-    this.log.push((this.log.length)+ 1)
+    this.log.push((this.log.length)+ 1);
     this.datelog.push(new Date());
   }
 
